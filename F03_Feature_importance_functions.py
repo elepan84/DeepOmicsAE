@@ -46,18 +46,18 @@ warnings.filterwarnings('ignore')
 
 def feature_importance_latent(encoder, data, eps):
 
-"""
-This function computes the importance scores for the features of a dataset by perturbing each feature and observing the changes in the latent space of an encoder model.
+    """
+    This function computes the importance scores for the features of a dataset by perturbing each feature and observing the changes in the latent space of an encoder model.
 
-Parameters:
-encoder (model): The encoder model used to project data into latent space.
-data (DataFrame): The input data whose features' importance are to be determined.
-eps (float): The perturbation amount added to each feature in the data.
+    Parameters:
+    encoder (model): The encoder model used to project data into latent space.
+    data (DataFrame): The input data whose features' importance are to be determined.
+    eps (float): The perturbation amount added to each feature in the data.
 
-Output:
-importance_scores (2D numpy array): An array with importance scores for each feature across all 
-dimensions of the latent space.
-"""
+    Output:
+    importance_scores (2D numpy array): An array with importance scores for each feature across all 
+    dimensions of the latent space.
+    """
 
     data = data.values
     original_latent = encoder.predict(data)[0]
@@ -81,11 +81,11 @@ dimensions of the latent space.
 
 def top_percentile_indices(scores):
 
-"""
-This function calculates the 70th percentile value (threshold) for each column in a 2D array (scores)
-and returns indices of elements that are greater or equal to this threshold. The output is a list 
-of these indices for each column (top_indices), along with the corresponding threshold values (thresholds).
-"""
+    """
+    This function calculates the 70th percentile value (threshold) for each column in a 2D array (scores)
+    and returns indices of elements that are greater or equal to this threshold. The output is a list 
+    of these indices for each column (top_indices), along with the corresponding threshold values (thresholds).
+    """
     num_latent_units = scores.shape[1]
     top_indices = []
     thresholds = []
@@ -101,7 +101,7 @@ of these indices for each column (top_indices), along with the corresponding thr
 # In[4]:
 
 
-def plot_density(dfs, thresholds):
+def plot_density(dfs, thresholds, scaler):
     """
     Function to plot density plots for multiple dataframes in a 2x2 grid and save to a PDF file.
     
